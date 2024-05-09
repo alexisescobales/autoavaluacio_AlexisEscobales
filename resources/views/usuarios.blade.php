@@ -28,13 +28,26 @@
             <td>{{ $usuario->actiu }}</td>
             <td>{{ $usuario->tipus_usuaris_id }}</td>
             <td>
-                <button class="btn btn-success">Editar</button>
-                <button class="btn btn-danger">Eliminar</button>
+                
+                <!-- Enlace para editar un usuario -->
+                <a href="{{ route('usuarios.edit', $usuario->id) }}" class="btn btn-primary">Editar</a>
+
+
+                
+                
+                <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+                
+
+
             </td>
         </tr>
         @endforeach
     </tbody>
-    <a href="{{ url('usuarios/create') }}" class="btn btn-danger">Crear Usuario</a>
+    <a href="{{ url('usuarios/create') }}" class="btn btn-success">Crear Usuario</a>
 
 </table>
 @endsection

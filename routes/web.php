@@ -20,6 +20,24 @@ Route::get('/', function () {
 
 Route::resource('usuarios', UsuarioController::class);
 
+Route::get('/login', [UsuarioController::class, 'showLoginForm'])->name('login');
+
+Route::post('/login', [UsuarioController::class, 'login']);
+
+Route::get('/logout', [UsuarioController::class, 'logout']);
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/principal', function () {
+        $user = Auth::user();
+
+        return view('principal', compact('user'));
+    });
+
+});
+
+
+
 
 
 
