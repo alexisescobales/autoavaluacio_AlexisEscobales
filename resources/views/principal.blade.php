@@ -26,7 +26,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
           <a class="dropdown-item" href="#">Tipus usuaris</a>
-          <a class="dropdown-item" href="#">Usuaris</a>
+          <a class="dropdown-item" href="{{ route('usuarios.index') }}">Usuaris</a> <!-- Enlace modificado -->
           <a class="dropdown-item" href="#">Cicles</a>
           <a class="dropdown-item" href="#">Mòduls</a>
           <div class="dropdown-divider"></div>
