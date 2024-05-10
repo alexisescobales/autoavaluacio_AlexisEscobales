@@ -10,6 +10,10 @@ class CriterisAvaluacio extends Model
     protected $table = 'criteris_avaluacio';
     public $timestamps = false;
 
+    protected $fillable = [
+        'id', 'ordre', 'descripcio', 'actiu', 'cognom', 'resultats_aprenentatge_id'
+       ];
+
     public function resultatsAprenentatge()
     {
         return $this->belongsTo(ResultatsAprenentatge::class, 'resultats_aprenentatge_id');

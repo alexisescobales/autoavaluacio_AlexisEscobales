@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Api\ResultatsController;
+use App\Http\Controllers\CriterisController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\MatriculaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +20,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::apiResource('ResultatsController', ResultatsController::class);
+
+Route::apiResource('CriterisController', CriterisController::class);
+
+
+
+Route::post('/usuarios/{usuario}/matricular/{modulo}', [MatriculaController::class, 'matricular']);
+Route::delete('/usuarios/{usuario}/desmatricular/{modulo}', [MatriculaController::class, 'desmatricular']);

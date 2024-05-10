@@ -11,6 +11,10 @@ class ResultatsAprenentatge extends Model
     protected $table = 'resultats_aprenentatge';
     public $timestamps = false;
 
+    protected $fillable = [
+        'id', 'ordre', 'descripcio', 'actiu', 'moduls_id'
+    ];
+
     public function moduls()
     {
         return $this->belongsTo(Moduls::class, 'moduls_id');
