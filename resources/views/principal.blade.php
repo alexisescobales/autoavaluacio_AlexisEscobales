@@ -66,7 +66,7 @@
                     Alumnes
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                    <a class="dropdown-item" href="#">Autoavaluació</a>
+                    <a class="dropdown-item" href="{{ route('AutoavaluacioController.index')}}">Autoavaluació</a>
                 </div>
             </li>
             @endif
