@@ -11,6 +11,10 @@ class Moduls extends Model
     protected $table = 'moduls';
     public $timestamps = false;
 
+    protected $fillable = [
+        'id', 'codi', 'sigles', 'nom', 'actiu', 'cicles_id'
+    ];
+
     public function resultatsAprenentatge()
     {
         return $this->hasMany(ResultatsAprenentatge::class, 'moduls_id');

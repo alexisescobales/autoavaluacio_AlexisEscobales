@@ -9,7 +9,7 @@ use App\Models\ResultatsAprenentatge;
 use Illuminate\Database\QueryException;
 use App\Http\Resources\ResultatsResource;
 
-class ResultatsController extends Controller
+class CriterisController extends Controller
 {
     public function index()
     {
