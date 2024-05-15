@@ -32,6 +32,9 @@ Route::get('/logout', [UsuarioController::class, 'logout']);
 Route::get('/logout', [UsuarioController::class, 'logout']);
 
 
+
+
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/principal', function () {
         $user = Auth::user();
@@ -40,6 +43,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
 });
+
 
 
 
