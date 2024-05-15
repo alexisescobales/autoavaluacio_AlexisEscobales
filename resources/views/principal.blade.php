@@ -66,6 +66,7 @@
                     Alumnes
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                    {{-- Usar un controller normal para rredirigir a la vista, i ya luego en moduls.vue con el ftech ya llamaaras a la api con la info --}}
                     <a class="dropdown-item" href="{{ route('AutoavaluacioController.index')}}">Autoavaluació</a>
                 </div>
             </li>
