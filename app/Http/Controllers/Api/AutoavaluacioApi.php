@@ -7,19 +7,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 
-class AutoavaluacioController extends Controller
+class AutoavaluacioApi extends Controller
 {
 
-    public function index(Request $request)
+    public function index()
     {
-        if (Auth::check()) {
-            $user = Auth::user();
-            return response()->json($user);
-        } else {
-            return response()->json(['message' => 'No hay usuario autenticado'], 401);
-        }
     }
-    
+
 
     public function store(Request $request)
     {

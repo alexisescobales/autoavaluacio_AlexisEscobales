@@ -1,7 +1,10 @@
 import { createApp } from 'vue';
-import './bootstrap';
+import Moduls from './components/Moduls.vue';
 
-import * as bootstrap from 'bootstrap';
-import moduls from './components/Moduls.vue';
+const app = createApp(Moduls);
 
-createApp(moduls).mount('#moduls');
+const modulsElement = document.getElementById('moduls');
+const usuarioData = modulsElement.getAttribute('data-usuario');
+const usuario = JSON.parse(usuarioData);
+
+app.mount('#moduls', { usuario });

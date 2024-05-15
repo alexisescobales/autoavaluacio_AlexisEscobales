@@ -5,7 +5,7 @@ use App\Http\Controllers\Api\CriterisController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\MatriculaController;
-use App\Http\Controllers\Api\AutoavaluacioController;
+use App\Http\Controllers\Api\AutoavaluacioApi;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +29,9 @@ Route::apiResource('CriterisController', CriterisController::class);
 
 Route::apiResource('MatriculaController', MatriculaController::class);
 
-Route::apiResource('AutoavaluacioController', AutoavaluacioController::class);
+Route::apiResource('AutoavaluacioApi', AutoavaluacioApi::class);
+
+
 
 
 

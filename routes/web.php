@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\AutoavaluacioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +21,13 @@ Route::get('/', function () {
 
 Route::resource('usuarios', UsuarioController::class);
 
+Route::resource('moduls', AutoavaluacioController::class);
+
 Route::get('/login', [UsuarioController::class, 'showLoginForm'])->name('login');
 
 Route::post('/login', [UsuarioController::class, 'login']);
+
+Route::get('/logout', [UsuarioController::class, 'logout']);
 
 Route::get('/logout', [UsuarioController::class, 'logout']);
 
