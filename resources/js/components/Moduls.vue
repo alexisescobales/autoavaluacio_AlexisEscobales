@@ -21,4 +21,5 @@ export default {
     this.usuario = JSON.parse(usuarioData);
   }
 }
+
 </script>
