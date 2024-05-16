@@ -64,7 +64,6 @@ class AutoavaluacioApi extends Controller
                 $nota = Usuaris::find($idusuario)->alumnesHasCriterisAvaluacio()
                                 ->where('criteris_avaluacio_id', $criterio->id)
                                 ->value('nota');
-                                
                 // Asignar la nota al criterio
                 $criterio->nota = $nota;
             }

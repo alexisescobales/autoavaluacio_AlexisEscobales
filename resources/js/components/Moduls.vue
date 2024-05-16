@@ -15,10 +15,10 @@
             {{ criterio.descripcio }}
             <!-- Cambia la lista de rubricas por un select -->
             <select v-model="criterio.nota">
-              <option v-for="(rubrica, index) in criterio.rubricas" :key="index" :value="rubrica.id">{{ rubrica.nivell
-                }}- {{ rubrica.descripcio }}</option>
+              <option v-for="(rubrica, index) in criterio.rubricas" :key="index" :value="rubrica.nivell">
+                {{ rubrica.nivell }} - {{ rubrica.descripcio }}
+              </option>
             </select>
-
             <!-- Mostrar la nota asociada al criterio -->
             <p>Nota: {{ criterio.nota }}</p>
           </li>
