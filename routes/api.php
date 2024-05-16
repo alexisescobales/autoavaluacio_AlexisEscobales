@@ -35,6 +35,9 @@ Route::get('AutoavaluacioApi/modulos/{id}', [AutoavaluacioApi::class, 'modulos']
 
 Route::get('AutoavaluacioApi/ra/{id}/{idusuario}', [AutoavaluacioApi::class, 'ra']);
 
+Route::put('/AutoavaluacioApi/update-notas/{idusuario}', [AutoavaluacioApi::class, 'updateNotas']);
+
+
 
 
 

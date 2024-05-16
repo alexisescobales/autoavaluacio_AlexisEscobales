@@ -14,7 +14,7 @@
           <li v-for="criterio in resultado.criterisAvaluacio" :key="criterio.id" class="criterio-item">
             {{ criterio.descripcio }}
             <!-- Cambia la lista de rubricas por un select -->
-            <select v-model="criterio.nota">
+            <select v-model="criterio.nota" @change="updateNota(criterio)">
               <option v-for="(rubrica, index) in criterio.rubricas" :key="index" :value="rubrica.nivell">
                 {{ rubrica.nivell }} - {{ rubrica.descripcio }}
               </option>
@@ -37,6 +37,7 @@ export default {
       usuario: null,
       modulos: [],
       resultadosAprendizaje: [],
+      criterio: {}
     };
   },
   created() {
@@ -71,10 +72,19 @@ export default {
         .catch(error => {
           console.error('Error fetching resultados de aprendizaje:', error);
         });
-    }
-  }
+    },
+    updateNota(criterio) {
+  axios.put('/autoavaluacio_AlexisEscobales/public/api/AutoavaluacioApi/update-notas/${this.usuario.id}', criterio)
+    .then(response => {
+      console.log('Nota actualizada:', response.data);
+    })
+    .catch(error => {
+      console.error('Error updating nota:', error);
+    });
 }
 
+  }
+}
 </script>
 
 <style scoped>

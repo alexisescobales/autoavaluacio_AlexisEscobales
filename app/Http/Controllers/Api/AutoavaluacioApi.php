@@ -71,6 +71,35 @@ class AutoavaluacioApi extends Controller
     
         return response()->json($resultadosAprendizaje);
     }
+
+
+
+
+
+
+
+    
+    public function updateNotas(Request $request, $idusuario )
+{
+    dd("ola");
+
+
+    // Obtener los datos enviados en la solicitud
+    $criterio = $request->all();
+
+    // Iterar sobre los datos y actualizar las notas en la base de datos
+
+        $usuario = Usuaris::findOrFail($idusuario);
+        // Buscar el criterio por su ID y actualizar la nota
+        $criterioAActualizar = CriterisAvaluacio::findOrFail($criterio['id']);
+        
+        $criterioAActualizar->update(['nota' => $criterio['nota']]);
+    
+
+    // Retornar una respuesta de éxito
+    return response()->json(['message' => 'Notas actualizadas correctamente'], 200);
+}
+
     
 }
 
