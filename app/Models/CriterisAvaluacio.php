@@ -26,7 +26,7 @@ class CriterisAvaluacio extends Model
 
     public function alumnesHasCriterisAvaluacio()
     {
-        return $this->belongsToMany(Usuaris::class, 'criteris_avaluacio_id', 'usuaris_id')
+        return $this->belongsToMany(Usuaris::class, 'alumnes_has_criteris_avaluacio', 'criteris_avaluacio_id', 'usuaris_id')
                     ->withPivot('nota');
     }
 }

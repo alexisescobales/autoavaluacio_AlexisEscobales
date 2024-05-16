@@ -74,7 +74,7 @@ export default {
         });
     },
     updateNota(criterio) {
-  axios.put('/autoavaluacio_AlexisEscobales/public/api/AutoavaluacioApi/update-notas/${this.usuario.id}', criterio)
+  axios.put('/autoavaluacio_AlexisEscobales/public/api/AutoavaluacioApi/update-notas/', criterio)
     .then(response => {
       console.log('Nota actualizada:', response.data);
     })

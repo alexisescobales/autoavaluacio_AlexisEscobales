@@ -29,7 +29,7 @@ class Usuaris extends AuthenticatableUser implements Authenticatable
 
     public function alumnesHasCriterisAvaluacio()
     {
-        return $this->belongsToMany(CriterisAvaluacio::class, 'usuaris_id', 'criteris_avaluacio_id')
+        return $this->belongsToMany(CriterisAvaluacio::class, 'alumnes_has_criteris_avaluacio', 'usuaris_id', 'criteris_avaluacio_id')
                     ->withPivot('nota');
     }
 
