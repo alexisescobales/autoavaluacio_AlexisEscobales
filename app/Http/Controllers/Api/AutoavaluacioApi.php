@@ -6,6 +6,7 @@ use App\Models\Moduls;
 use App\Models\Usuaris;
 use App\Models\CriterisAvaluacio;
 use App\Models\ResultatsAprenentatge;
+use App\Models\Rubriques; // Importa el modelo de Rubriques
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -46,17 +47,31 @@ class AutoavaluacioApi extends Controller
         return response()->json($modulos);
     }
 
-    public function ra($id)
+    public function ra($id, $idusuario)
     {
         // Obtener los resultados de aprendizaje asociados al módulo
         $resultadosAprendizaje = ResultatsAprenentatge::where('moduls_id', $id)->get();
-
+    
         // Iterar sobre cada resultado de aprendizaje y cargar los criterios de evaluación asociados
         foreach ($resultadosAprendizaje as $resultado) {
             $resultado->criterisAvaluacio = CriterisAvaluacio::where('resultats_aprenentatge_id', $resultado->id)->get();
+    
+            // Obtener las descripciones de las rubricas asociadas a cada criterio
+            foreach ($resultado->criterisAvaluacio as $criterio) {
+                $criterio->rubricas = Rubriques::where('criteris_avaluacio_id', $criterio->id)->orderBy('nivell')->get();
+                
+                // Obtener la nota del usuario para este criterio
+                $nota = Usuaris::find($idusuario)->alumnesHasCriterisAvaluacio()
+                                ->where('criteris_avaluacio_id', $criterio->id)
+                                ->value('nota');
+                                
+                // Asignar la nota al criterio
+                $criterio->nota = $nota;
+            }
         }
-
+    
         return response()->json($resultadosAprendizaje);
     }
     
 }
+

@@ -33,7 +33,8 @@ Route::apiResource('AutoavaluacioApi', AutoavaluacioApi::class);
 
 Route::get('AutoavaluacioApi/modulos/{id}', [AutoavaluacioApi::class, 'modulos']);
 
-Route::get('AutoavaluacioApi/ra/{id}', [AutoavaluacioApi::class, 'ra']);
+Route::get('AutoavaluacioApi/ra/{id}/{idusuario}', [AutoavaluacioApi::class, 'ra']);
+
 
 
 

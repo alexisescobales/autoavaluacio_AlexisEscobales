@@ -1,8 +1,5 @@
 <template>
   <div class="container">
-    <h1>Usuario Autenticado</h1>
-    <p>Nombre: {{ usuario.nom }}</p>
-    <p>Email: {{ usuario.correu }}</p>
     <h2>Módulos Matriculados</h2>
     <ul class="module-list">
       <li v-for="modulo in modulos" :key="modulo.id" @click="fetchResultadosAprendizaje(modulo)">
@@ -16,6 +13,14 @@
         <ul class="criterios-list">
           <li v-for="criterio in resultado.criterisAvaluacio" :key="criterio.id" class="criterio-item">
             {{ criterio.descripcio }}
+            <!-- Cambia la lista de rubricas por un select -->
+            <select v-model="criterio.nota">
+              <option v-for="(rubrica, index) in criterio.rubricas" :key="index" :value="rubrica.id">{{ rubrica.nivell
+                }}- {{ rubrica.descripcio }}</option>
+            </select>
+
+            <!-- Mostrar la nota asociada al criterio -->
+            <p>Nota: {{ criterio.nota }}</p>
           </li>
         </ul>
       </li>
@@ -31,7 +36,7 @@ export default {
     return {
       usuario: null,
       modulos: [],
-      resultadosAprendizaje: []
+      resultadosAprendizaje: [],
     };
   },
   created() {
@@ -52,9 +57,16 @@ export default {
         });
     },
     fetchResultadosAprendizaje(modulo) {
-      axios.get(`/autoavaluacio_AlexisEscobales/public/api/AutoavaluacioApi/ra/${modulo.id}`)
+      axios.get(`/autoavaluacio_AlexisEscobales/public/api/AutoavaluacioApi/ra/${modulo.id}/${this.usuario.id}`)
         .then(response => {
           this.resultadosAprendizaje = response.data;
+          // Inicializar selectedRubrica con un objeto vacío para cada criterio
+          this.resultadosAprendizaje.forEach(resultado => {
+            resultado.criterisAvaluacio.forEach(criterio => {
+              // Asegúrate de que cada criterio tenga una propiedad de nota inicializada
+              this.$set(criterio, 'nota', null);
+            });
+          });
         })
         .catch(error => {
           console.error('Error fetching resultados de aprendizaje:', error);
@@ -62,6 +74,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style scoped>
@@ -108,5 +121,13 @@ export default {
 
 .criterio-item {
   margin-bottom: 5px;
+}
+
+/* Estilo adicional para el select */
+select {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 </style>
