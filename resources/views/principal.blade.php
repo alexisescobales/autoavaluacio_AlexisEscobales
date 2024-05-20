@@ -80,7 +80,7 @@
                 {{Auth::user()->nom_usuari}} {{Auth::user()->cognom}} 
             </a>
         <form id="logout-form" action="{{ url('/logout') }}" method="GET" style="display: inline;">
-            @csrf <!-- Asegúrate de incluir el token CSRF si estás usando Laravel -->
+            @csrf 
             <button type="submit" class="logout-button">
                 LOGOUT
             </button>
