@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 class CriterisAvaluacio extends Model
 {
     use HasFactory;
@@ -11,8 +12,13 @@ class CriterisAvaluacio extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'id', 'ordre', 'descripcio', 'actiu', 'cognom', 'resultats_aprenentatge_id'
-       ];
+        'id',
+        'ordre',
+        'descripcio',
+        'actiu',
+        'cognom',
+        'resultats_aprenentatge_id'
+    ];
 
     public function resultatsAprenentatge()
     {
@@ -27,6 +33,6 @@ class CriterisAvaluacio extends Model
     public function alumnesHasCriterisAvaluacio()
     {
         return $this->belongsToMany(Usuaris::class, 'alumnes_has_criteris_avaluacio', 'criteris_avaluacio_id', 'usuaris_id')
-                    ->withPivot('nota');
+            ->withPivot('nota');
     }
 }

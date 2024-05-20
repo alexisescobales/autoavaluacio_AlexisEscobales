@@ -37,7 +37,6 @@ export default {
       usuario: null,
       modulos: [],
       resultadosAprendizaje: [],
-      criterio: {}
     };
   },
   created() {
@@ -61,11 +60,10 @@ export default {
       axios.get(`/autoavaluacio_AlexisEscobales/public/api/AutoavaluacioApi/ra/${modulo.id}/${this.usuario.id}`)
         .then(response => {
           this.resultadosAprendizaje = response.data;
-          // Inicializar selectedRubrica con un objeto vacío para cada criterio
+          // Inicializar nota para cada criterio
           this.resultadosAprendizaje.forEach(resultado => {
             resultado.criterisAvaluacio.forEach(criterio => {
-              // Asegúrate de que cada criterio tenga una propiedad de nota inicializada
-              this.$set(criterio, 'nota', null);
+              this.$set(criterio, 'nota', criterio.nota || null);
             });
           });
         })
@@ -74,15 +72,18 @@ export default {
         });
     },
     updateNota(criterio) {
-  axios.put('/autoavaluacio_AlexisEscobales/public/api/AutoavaluacioApi/update-notas/', criterio)
-    .then(response => {
-      console.log('Nota actualizada:', response.data);
-    })
-    .catch(error => {
-      console.error('Error updating nota:', error);
-    });
-}
-
+      axios.put(`/autoavaluacio_AlexisEscobales/public/api/updateNota`, {
+        usuaris_id: this.usuario.id,
+        criteris_avaluacio_id: criterio.id,
+        nota: criterio.nota
+      })
+      .then(response => {
+        console.log(response.data.message);
+      })
+      .catch(error => {
+        console.error('Error updating nota:', error);
+      });
+    }
   }
 }
 </script>
@@ -133,7 +134,6 @@ export default {
   margin-bottom: 5px;
 }
 
-/* Estilo adicional para el select */
 select {
   width: 100%;
   padding: 5px;
