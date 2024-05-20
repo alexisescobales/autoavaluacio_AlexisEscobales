@@ -79,9 +79,12 @@
             <a style="color: white;">
                 {{Auth::user()->nom_usuari}} {{Auth::user()->cognom}} 
             </a>
-            <a href="{{ url('/logout')}}">
-                <i>LOGOUT</i>
-            </a>
+        <form id="logout-form" action="{{ url('/logout') }}" method="GET" style="display: inline;">
+            @csrf <!-- Asegúrate de incluir el token CSRF si estás usando Laravel -->
+            <button type="submit" class="logout-button">
+                LOGOUT
+            </button>
+        </form>
         @else
         <a href="{{ route('login') }}" class="btn btn-outline-light">Iniciar Sesión</a>
         @endif
@@ -98,3 +101,19 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+    <style>
+        .logout-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
