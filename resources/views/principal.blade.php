@@ -54,7 +54,7 @@
                     <a class="dropdown-item" href="#">Resultats aprenentatge</a>
                     <a class="dropdown-item" href="#">Criteris avaluació</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Autoavaluació alumnes</a>
+                    <a class="dropdown-item" href="{{ route('moduls.index')}}">Autoavaluació alumnes</a>
                 </div>
             </li>
             @endif

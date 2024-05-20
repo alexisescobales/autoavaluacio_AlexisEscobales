@@ -19,8 +19,6 @@
                 {{ rubrica.nivell }} - {{ rubrica.descripcio }}
               </option>
             </select>
-            <!-- Mostrar la nota asociada al criterio -->
-            <p>Nota: {{ criterio.nota }}</p>
           </li>
         </ul>
       </li>

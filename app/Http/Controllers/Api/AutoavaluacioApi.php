@@ -57,6 +57,14 @@ class AutoavaluacioApi extends Controller
     
         return response()->json(['message' => 'Nota actualizada correctamente.']);
     }
+
+    public function getUsuaris()
+    {
+        // Consultar la base de datos para obtener todos los usuarios del tipo 2 (alumnos)
+        $usuarios = Usuaris::where('tipus_usuaris_id', 3)->get();
+    
+        return response()->json($usuarios);
+    }
     
     
 }

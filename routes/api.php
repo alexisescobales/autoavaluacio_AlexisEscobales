@@ -37,6 +37,8 @@ Route::get('AutoavaluacioApi/ra/{id}/{idusuario}', [AutoavaluacioApi::class, 'ra
 
 Route::put('updateNota', [AutoavaluacioApi::class, 'updateNota']);
 
+Route::get('getUsuaris', [AutoavaluacioApi::class, 'getUsuaris']);
+
 
 
 
